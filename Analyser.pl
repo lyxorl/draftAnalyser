@@ -38,7 +38,7 @@ increment_matrix(Matrix, I, J, NewMatrix) :-
     nth1(J, Row, Value),
     NewValue is Value + 1,
     replace_in_list(J, NewValue, Row, NewRow),
-    replace_in_list(I, NewRow, Matrix, NewMatrix)
+    replace_in_list(I, NewRow, Matrix, NewMatrix).
 
 replace_in_list(Index, Value, List, NewList) :-
     nth1(Index, List, _, Temp),
@@ -66,7 +66,6 @@ process_lines([Line | Rest], Id) :-
     process_lines(Rest, NewID).
 
 draft(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :-
-    % add verification for valid draft
     champion(Wtop),
     champion(Wjgl),
     champion(Wmid),
@@ -78,9 +77,22 @@ draft(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :-
     champion(Ladc),
     champion(Lsup).
 
+add_victory_one_champ(Matrix, WChamp, LChamp, NewMatrix) :-
+    champion_id(WChamp,WchampID),
+    champion_id(LChamp,LChampID),
+    increment_matrix(Matrix,WchampID,LChampID,NewMatrix).
+
+add_victory_one_champ_for_five(Matrix, WChamp, LChamp1, LChamp2, LChamp3, LChamp4, LChamp5, NewMatrix) :-
+    add_victory_one_champ(Matrix ,WChamp,LChamp1,Matrix1),
+    add_victory_one_champ(Matrix1,WChamp,LChamp2,Matrix2),
+    add_victory_one_champ(Matrix2,WChamp,LChamp3,Matrix3),
+    add_victory_one_champ(Matrix3,WChamp,LChamp4,Matrix4),
+    add_victory_one_champ(Matrix4,WChamp,LChamp5,NewMatrix).
+
 add_victory(WTop,WMid,WJgl,WAdc,WSup,LTop,LMid,LJgl,LAdc,LSup, Matrix) :-
-    %add victory of the draft
-    champion_id(WTop,WtopID),
-    champion_id(LTop,LTopID),
-    increment_matrix(Matrix,WtopID,LTopID, NewMatrix),
-    save_matrix('matrix.txt',NewMatrix).
+    add_victory_one_champ_for_five(Matrix ,WTop,LTop,LJgl,LMid,LAdc,LSup,Matrix1),
+    add_victory_one_champ_for_five(Matrix1,WJgl,LTop,LJgl,LMid,LAdc,LSup,Matrix2),
+    add_victory_one_champ_for_five(Matrix2,WMid,LTop,LJgl,LMid,LAdc,LSup,Matrix3),
+    add_victory_one_champ_for_five(Matrix3,WAdc,LTop,LJgl,LMid,LAdc,LSup,Matrix4),
+    add_victory_one_champ_for_five(Matrix4,WSup,LTop,LJgl,LMid,LAdc,LSup,FinalMatrix),
+    save_matrix('matrix.txt',FinalMatrix).
