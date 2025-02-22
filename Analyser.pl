@@ -1,29 +1,30 @@
 
-create_matrix(N, Matrix) :-
+% Matrix Gestion
+create_matrix(N, Matrix) :- %Square Matrix
     create_matrix(N, N, Matrix).
 
 create_matrix(0, _, []).
 
 create_matrix(Rows, Cols, [Row | Rest]) :-
     Rows > 0,
-    create_row(Cols, Row), % Row != Rows
+    create_row(Cols, Row), % /!\ Row != Rows  and add 0 in matrix
     New_rows is Rows -1,
     create_matrix(New_rows, Cols, Rest).
 
 create_row(0, []).
 
-create_row(N, [0 | Rest]) :-
+create_row(N, [0 | Rest]) :- % Fill Matrix with 0
     N > 0,
     New_N is N-1,
     create_row(New_N, Rest).
 
-save_matrix(Filename, Matrix) :-
+save_matrix(Filename, Matrix) :- % A enlever lorsque on aura DraftVictoryLst.txt
     open(Filename, write, Stream),
     write(Stream, Matrix),
     nl(Stream),
     close(Stream).
 
-load_matrix(Filename, Matrix) :-
+load_matrix(Filename, Matrix) :- % A enlever lorsque on aura DraftVictoryLst.txt
     open(Filename, read, Stream),
     read(Stream, Matrix),
     close(Stream).
@@ -48,7 +49,7 @@ process_file(Filename) :-
     open(Filename, read, Stream),
     read_lines(Stream, Lines),
     close(Stream),
-    process_lines(Lines, 1). % les indices commence a partir de 1
+    process_lines(Lines, 1). % start at 1 for matrix
 
 read_lines(Stream, []) :-
     at_end_of_stream(Stream).
@@ -65,7 +66,13 @@ process_lines([Line | Rest], Id) :-
     NewID is Id+1,
     process_lines(Rest, NewID).
 
-draft(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :-
+initialiser(Matrix) :- % Load champ and load the matrix
+    process_file('LstLegend.txt'),
+    create_matrix(170, 170, Matrix).
+    add_victory('Aatrox','Azir','Zilean','Hecarim','Pantheon','Ahri','Akali','Shen','Janna','Zyra',Matrix). % recuperer les draft gagnantes et enlever le fichier matrix.txt
+
+draft_check(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :-
+    %add checking to have different champ and valid draft
     champion(Wtop),
     champion(Wjgl),
     champion(Wmid),
@@ -95,4 +102,4 @@ add_victory(WTop,WMid,WJgl,WAdc,WSup,LTop,LMid,LJgl,LAdc,LSup, Matrix) :-
     add_victory_one_champ_for_five(Matrix2,WMid,LTop,LJgl,LMid,LAdc,LSup,Matrix3),
     add_victory_one_champ_for_five(Matrix3,WAdc,LTop,LJgl,LMid,LAdc,LSup,Matrix4),
     add_victory_one_champ_for_five(Matrix4,WSup,LTop,LJgl,LMid,LAdc,LSup,FinalMatrix),
-    save_matrix('matrix.txt',FinalMatrix).
+    %save_matrix('matrix.txt',FinalMatrix). % inutil d'enregistrer la matrix restera dans la RAM.
