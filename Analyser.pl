@@ -118,3 +118,13 @@ add_victory(WTop,WMid,WJgl,WAdc,WSup,LTop,LMid,LJgl,LAdc,LSup) :-
     add_victory_one_champ_for_five(Matrix3,WAdc,LTop,LJgl,LMid,LAdc,LSup,Matrix4),
     add_victory_one_champ_for_five(Matrix4,WSup,LTop,LJgl,LMid,LAdc,LSup,FinalMatrix),
     save_matrix('matrix.txt',FinalMatrix).
+
+sum_list([],0).
+sum_list([H|T], S):-
+    sum_list(T, NewS),
+    S is H + NewS.
+
+count_victory(Champ, Matrix, N) :-
+    champion_id(Champ, IdChamp),
+    nth1(IdChamp,Matrix, Line),
+    sum_list(Line,N).
