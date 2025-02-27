@@ -128,3 +128,12 @@ count_victory(Champ, Matrix, N) :-
     champion_id(Champ, IdChamp),
     nth1(IdChamp,Matrix, Line),
     sum_list(Line,N).
+
+sum_column([],_,0).
+sum_column([H|T], I, S) :-
+    sum_column(T, I, NewS),
+    nth1(I,T,V),
+    S is NewS + V.
+
+count_defeat(Champ, Matrix, N) :-
+    champion_id(Champ, IdChamp).
