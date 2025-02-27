@@ -1,5 +1,8 @@
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Matrix Gestion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 create_matrix(N, Matrix) :- %Square Matrix
     create_matrix(N, N, Matrix).
 
@@ -18,17 +21,6 @@ create_row(N, [0 | Rest]) :- % Fill Matrix with 0
     New_N is N-1,
     create_row(New_N, Rest).
 
-save_matrix(Filename, Matrix) :- % A enlever lorsque on aura DraftVictoryLst.txt
-    open(Filename, write, Stream),
-    write(Stream, Matrix),
-    nl(Stream),
-    close(Stream).
-
-load_matrix(Filename, Matrix) :- % A enlever lorsque on aura DraftVictoryLst.txt
-    open(Filename, read, Stream),
-    read(Stream, Matrix),
-    close(Stream).
-
 modify_matrix(Matrix, I, J, Value, NewMatrix) :-
     nth1(I, Matrix, Row),
     replace_in_list(J, Value, Row, NewRow),
@@ -44,6 +36,23 @@ increment_matrix(Matrix, I, J, NewMatrix) :-
 replace_in_list(Index, Value, List, NewList) :-
     nth1(Index, List, _, Temp),
     nth1(Index, NewList, Value, Temp).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%File loading and saving gestion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+save_matrix(Filename, Matrix) :-
+    open(Filename, write, Stream),
+    write(Stream, Matrix),
+    nl(Stream),
+    close(Stream).
+
+load_matrix(Filename, Matrix) :-
+    open(Filename, read, Stream),
+    read_line_to_codes(Stream, Codes),
+    close(Stream),
+    atom_codes(Atom, Codes),
+    atom_to_term(Atom, Matrix, _).
 
 process_file(Filename) :-
     open(Filename, read, Stream),
@@ -66,10 +75,15 @@ process_lines([Line | Rest], Id) :-
     NewID is Id+1,
     process_lines(Rest, NewID).
 
-initialiser(Matrix) :- % Load champ and load the matrix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+initialiser(Matrix) :-
     process_file('LstLegend.txt'),
-    create_matrix(170, 170, Matrix).
-    add_victory('Aatrox','Azir','Zilean','Hecarim','Pantheon','Ahri','Akali','Shen','Janna','Zyra',Matrix). % recuperer les draft gagnantes et enlever le fichier matrix.txt
+    create_matrix(170, 170, Matrix),
+    save_matrix('matrix.txt',Matrix).
 
 draft_check(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :-
     %add checking to have different champ and valid draft
@@ -84,7 +98,7 @@ draft_check(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :-
     champion(Ladc),
     champion(Lsup).
 
-add_victory_one_champ(Matrix, WChamp, LChamp, NewMatrix) :-
+    add_victory_one_champ(Matrix, WChamp, LChamp, NewMatrix) :-
     champion_id(WChamp,WchampID),
     champion_id(LChamp,LChampID),
     increment_matrix(Matrix,WchampID,LChampID,NewMatrix).
@@ -96,10 +110,11 @@ add_victory_one_champ_for_five(Matrix, WChamp, LChamp1, LChamp2, LChamp3, LChamp
     add_victory_one_champ(Matrix3,WChamp,LChamp4,Matrix4),
     add_victory_one_champ(Matrix4,WChamp,LChamp5,NewMatrix).
 
-add_victory(WTop,WMid,WJgl,WAdc,WSup,LTop,LMid,LJgl,LAdc,LSup, Matrix) :-
+add_victory(WTop,WMid,WJgl,WAdc,WSup,LTop,LMid,LJgl,LAdc,LSup) :-
+    load_matrix('matrix.txt',Matrix),
     add_victory_one_champ_for_five(Matrix ,WTop,LTop,LJgl,LMid,LAdc,LSup,Matrix1),
     add_victory_one_champ_for_five(Matrix1,WJgl,LTop,LJgl,LMid,LAdc,LSup,Matrix2),
     add_victory_one_champ_for_five(Matrix2,WMid,LTop,LJgl,LMid,LAdc,LSup,Matrix3),
     add_victory_one_champ_for_five(Matrix3,WAdc,LTop,LJgl,LMid,LAdc,LSup,Matrix4),
     add_victory_one_champ_for_five(Matrix4,WSup,LTop,LJgl,LMid,LAdc,LSup,FinalMatrix),
-    %save_matrix('matrix.txt',FinalMatrix). % inutil d'enregistrer la matrix restera dans la RAM.
+    save_matrix('matrix.txt',FinalMatrix).
