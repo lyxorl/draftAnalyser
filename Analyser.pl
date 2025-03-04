@@ -148,11 +148,20 @@ win_proba_champ(Champ, Matrix, P) :-
     count_defeat(Champ, Matrix, D),
     (V + D =:= 0 -> P is 1 / 2 ; P is V / (V + D)).
 
-win_proba_against_one_champ(Champ, Oppenent, P):-
+win_proba_against_one_champ(Champ, Oppenent, Matrix, P):-
     champion_id(Champ, IdChamp),
     champion_id(Oppenent, IdChampOp),
-    nth1(IdChamp, Matrice, LigneListe),
+    nth1(IdChamp, Matrix, LigneListe),
     nth1(IdChampOp, LigneListe, Win),
-    nth1(IdChampOp, Matrice, LigneListe),
+    nth1(IdChampOp, Matrix, LigneListe),
     nth1(IdChamp, LigneListe, Loose),
     (Win + Loose =:= 0 -> P is 1 / 2 ; P is Win / (Win + Loose)).
+
+win_proba_one_champ_draft(Champ, Top, Jgl, Mid, Adc, Sup, Matrix, P):-
+    win_proba_against_one_champ(Champ, Top, Matrix, Ptop),
+    win_proba_against_one_champ(Champ, Jgl, Matrix, Pjgl),
+    win_proba_against_one_champ(Champ, Mid, Matrix, Pmid),
+    win_proba_against_one_champ(Champ, Adc, Matrix, Padc),
+    win_proba_against_one_champ(Champ, Sup, Matrix, Psup),
+    win_proba_champ(Champ, Matrix, Pglobal),
+    P is (Pglobal*(1/3) + (Ptop*(1/5)+Pjgl*(1/5)+Pmid*(1/5)+Padc*(1/5)+Psup*(1/5))*(2/3)).
