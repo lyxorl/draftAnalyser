@@ -147,3 +147,12 @@ win_proba_champ(Champ, Matrix, P) :-
     count_victory(Champ, Matrix, V),
     count_defeat(Champ, Matrix, D),
     (V + D =:= 0 -> P is 1 / 2 ; P is V / (V + D)).
+
+win_proba_against_one_champ(Champ, Oppenent, P):-
+    champion_id(Champ, IdChamp),
+    champion_id(Oppenent, IdChampOp),
+    nth1(IdChamp, Matrice, LigneListe),
+    nth1(IdChampOp, LigneListe, Win),
+    nth1(IdChampOp, Matrice, LigneListe),
+    nth1(IdChamp, LigneListe, Loose),
+    (Win + Loose =:= 0 -> P is 1 / 2 ; P is Win / (Win + Loose)).
