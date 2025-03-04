@@ -77,7 +77,7 @@ process_lines([Line | Rest], Id) :-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% Modify matrix : initialisation and add victory
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 initialiser(Matrix) :-
@@ -85,7 +85,7 @@ initialiser(Matrix) :-
     create_matrix(170, 170, Matrix),
     save_matrix('matrix.txt',Matrix).
 
-draft_check(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :-
+draft_check(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :- % to do
     %add checking to have different champ and valid draft
     champion(Wtop),
     champion(Wjgl),
@@ -119,6 +119,10 @@ add_victory(WTop,WMid,WJgl,WAdc,WSup,LTop,LMid,LJgl,LAdc,LSup) :-
     add_victory_one_champ_for_five(Matrix4,WSup,LTop,LJgl,LMid,LAdc,LSup,FinalMatrix),
     save_matrix('matrix.txt',FinalMatrix).
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% evaluate draft
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 sum_list([],0).
 sum_list([H|T], S):-
     sum_list(T, NewS),
@@ -136,4 +140,10 @@ sum_column([H|T], I, S) :-
     S is NewS + V.
 
 count_defeat(Champ, Matrix, N) :-
-    champion_id(Champ, IdChamp).
+    champion_id(Champ, IdChamp),
+    sum_column(Matrix, IdChamp, N).
+
+win_proba_champ(Champ, Matrix, P) :-
+    count_victory(Champ, Matrix, V),
+    count_defeat(Champ, Matrix, D),
+    (V + D =:= 0 -> P is 1 / 2 ; P is V / (V + D)).
