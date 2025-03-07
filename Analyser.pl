@@ -87,6 +87,7 @@ initialiser(Matrix) :-
 
 draft_check(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :- % to do
     %add checking to have different champ and valid draft
+    % use dif(Wtop)......
     champion(Wtop),
     champion(Wjgl),
     champion(Wmid),
