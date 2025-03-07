@@ -3,7 +3,7 @@
 % Matrix Gestion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-create_matrix(N, Matrix) :- %Square Matrix
+create_matrix(N, Matrix) :- %Matrix Carree
     create_matrix(N, N, Matrix).
 
 create_matrix(0, _, []).
@@ -148,7 +148,7 @@ win_proba_champ(Champ, Matrix, P) :-
     count_defeat(Champ, Matrix, D),
     (V + D =:= 0 -> P is 1 / 2 ; P is V / (V + D)).
 
-win_proba_against_one_champ(Champ, Oppenent, Matrix, P):-
+win_proba_against_one_champ(Champ, Oppenent, Matrix, P):- % Probabilite de gagner contre un champ
     champion_id(Champ, IdChamp),
     champion_id(Oppenent, IdChampOp),
     nth1(IdChamp, Matrix, LigneListe),
@@ -157,7 +157,7 @@ win_proba_against_one_champ(Champ, Oppenent, Matrix, P):-
     nth1(IdChamp, LigneListe, Loose),
     (Win + Loose =:= 0 -> P is 1 / 2 ; P is Win / (Win + Loose)).
 
-win_proba_one_champ_draft(Champ, Top, Jgl, Mid, Adc, Sup, Matrix, P):-
+win_proba_one_champ_draft(Champ, Top, Jgl, Mid, Adc, Sup, Matrix, P):- %proba de gagner d'un champ de gagner contre une draft complete
     win_proba_against_one_champ(Champ, Top, Matrix, Ptop),
     win_proba_against_one_champ(Champ, Jgl, Matrix, Pjgl),
     win_proba_against_one_champ(Champ, Mid, Matrix, Pmid),
@@ -166,7 +166,7 @@ win_proba_one_champ_draft(Champ, Top, Jgl, Mid, Adc, Sup, Matrix, P):-
     win_proba_champ(Champ, Matrix, Pglobal),
     P is (Pglobal*(1/3) + (Ptop*(1/5)+Pjgl*(1/5)+Pmid*(1/5)+Padc*(1/5)+Psup*(1/5))*(2/3)).
 
-win_proba_draft(BTop,BJgl,BMid,BAdc,BSup,RTop,RJgl,RMid,RAdc,RSup,Matrix, P):-
+win_proba_draft(BTop,BJgl,BMid,BAdc,BSup,RTop,RJgl,RMid,RAdc,RSup,Matrix, P):- %proba de gagner d'une draft
     win_proba_one_champ_draft(BTop,RTop,RJgl,RMid,RAdc,RSup, Matrix, PTop),
     win_proba_one_champ_draft(BJgl,RTop,RJgl,RMid,RAdc,RSup, Matrix, PJgl),
     win_proba_one_champ_draft(BMid,RTop,RJgl,RMid,RAdc,RSup, Matrix, PMid),
