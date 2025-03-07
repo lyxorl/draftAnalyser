@@ -167,9 +167,9 @@ win_proba_one_champ_draft(Champ, Top, Jgl, Mid, Adc, Sup, Matrix, P):-
     P is (Pglobal*(1/3) + (Ptop*(1/5)+Pjgl*(1/5)+Pmid*(1/5)+Padc*(1/5)+Psup*(1/5))*(2/3)).
 
 win_proba_draft(BTop,BJgl,BMid,BAdc,BSup,RTop,RJgl,RMid,RAdc,RSup,Matrix, P):-
-    win_proba_against_one_champ(BTop,RTop,RJgl,RMid,RAdc,RSup, Matrix, PTop),
-    win_proba_against_one_champ(BJgl,RTop,RJgl,RMid,RAdc,RSup, Matrix, PJgl),
-    win_proba_against_one_champ(BMid,RTop,RJgl,RMid,RAdc,RSup, Matrix, PMid),
-    win_proba_against_one_champ(BAdc,RTop,RJgl,RMid,RAdc,RSup, Matrix, PAdc),
-    win_proba_against_one_champ(BSup,RTop,RJgl,RMid,RAdc,RSup, Matrix, PSup),
+    win_proba_one_champ_draft(BTop,RTop,RJgl,RMid,RAdc,RSup, Matrix, PTop),
+    win_proba_one_champ_draft(BJgl,RTop,RJgl,RMid,RAdc,RSup, Matrix, PJgl),
+    win_proba_one_champ_draft(BMid,RTop,RJgl,RMid,RAdc,RSup, Matrix, PMid),
+    win_proba_one_champ_draft(BAdc,RTop,RJgl,RMid,RAdc,RSup, Matrix, PAdc),
+    win_proba_one_champ_draft(BSup,RTop,RJgl,RMid,RAdc,RSup, Matrix, PSup),
     P is PTop*(1/5)+PJgl*(1/5)+PMid*(1/5)+PAdc*(1/5)+PSup*(1/5).
