@@ -154,8 +154,8 @@ win_proba_against_one_champ(Champ, Oppenent, Matrix, P):- % Probabilite de gagne
     champion_id(Oppenent, IdChampOp),
     nth1(IdChamp, Matrix, LigneListe),
     nth1(IdChampOp, LigneListe, Win),
-    nth1(IdChampOp, Matrix, LigneListe),
-    nth1(IdChamp, LigneListe, Loose),
+    nth1(IdChampOp, Matrix, LigneListe2),
+    nth1(IdChamp, LigneListe2, Loose),
     (Win + Loose =:= 0 -> P is 1 / 2 ; P is Win / (Win + Loose)).
 
 win_proba_one_champ_draft(Champ, Top, Jgl, Mid, Adc, Sup, Matrix, P):- %proba de gagner d'un champ de gagner contre une draft complete
@@ -178,5 +178,5 @@ win_proba_draft(BTop,BJgl,BMid,BAdc,BSup,RTop,RJgl,RMid,RAdc,RSup,Matrix, P):- %
     win_proba_one_champ_draft(RMid,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRMid),
     win_proba_one_champ_draft(RAdc,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRAdc),
     win_proba_one_champ_draft(RSup,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRSup),
-    Plogisticfun is e**(-((PRTop*(1/5)+PRJgl*(1/5)+PRMid*(1/5)+PRAdc*(1/5)+PRSup*(1/5))-(PBTop*(1/5)+PBJgl*(1/5)+PBMid*(1/5)+PBAdc*(1/5)+PBSup*(1/5)))),
+    Plogisticfun is e**(-((PBTop*(1/5)+PBJgl*(1/5)+PBMid*(1/5)+PBAdc*(1/5)+PBSup*(1/5))-(PRTop*(1/5)+PRJgl*(1/5)+PRMid*(1/5)+PRAdc*(1/5)+PRSup*(1/5)))),
     P is 1/(1+Plogisticfun).
