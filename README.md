@@ -2,7 +2,9 @@
 
 This project as goal to analyse League of Legends draft, and will bve use for the event First Stand 2024.
 How to use it :
+
 [There is a PDF which explain probability model here](main.pdf)
+
 ---
 ## Load Data
 - Open prolog file :
