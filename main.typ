@@ -29,7 +29,21 @@ Now let's create your model to calculate probability of win of the "Red" or "Blu
 First define define the "Strength of a champion" called $S_i$ :
 $ S_i = sum_(k=1)^(5) ((w_(x_k)/(w_(x_k)+l_(x_k)))1/3 + (M_(i,k)/(M_(i,k) + M_(k,i)))2/3) $
 
+Lets add details about $S_i$ :
+- $i$ is the indice of the champion in draft.
+- $x_i$ is the indice of the chmapion in the oppenent team for $i in [|1,5|]$.
+- $1/3$ and $2/3$ are weights for the general win probability and for the direct matchup.
+
+Now we can define the "Strength of team" for the "Red" and for the "Blue" : $S_R$ and $S_B$
+
+$ S_t = sum_(k=1)^(5) S_k $
+
+with $t in {R,B}$
+
 
 = Historical of draft and command in Prolog
+
+initialiser(Matrix).
+add_victory('Ornn','Maokai','Tristana','Varus','Nautilus','Jayce','Vi','Aurora','Ezreal','Rell').
 
 = Result and conclusion

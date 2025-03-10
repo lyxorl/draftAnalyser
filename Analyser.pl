@@ -99,7 +99,7 @@ draft_check(Wtop,Wjgl,Wmid,Wadc,Wsup,Ltop,Ljgl,Lmid,Ladc,Lsup) :- % to do
     champion(Ladc),
     champion(Lsup).
 
-    add_victory_one_champ(Matrix, WChamp, LChamp, NewMatrix) :-
+add_victory_one_champ(Matrix, WChamp, LChamp, NewMatrix) :-
     champion_id(WChamp,WchampID),
     champion_id(LChamp,LChampID),
     increment_matrix(Matrix,WchampID,LChampID,NewMatrix).
@@ -168,9 +168,15 @@ win_proba_one_champ_draft(Champ, Top, Jgl, Mid, Adc, Sup, Matrix, P):- %proba de
     P is (Pglobal*(1/3) + (Ptop*(1/5)+Pjgl*(1/5)+Pmid*(1/5)+Padc*(1/5)+Psup*(1/5))*(2/3)).
 
 win_proba_draft(BTop,BJgl,BMid,BAdc,BSup,RTop,RJgl,RMid,RAdc,RSup,Matrix, P):- %proba de gagner d'une draft
-    win_proba_one_champ_draft(BTop,RTop,RJgl,RMid,RAdc,RSup, Matrix, PTop),
-    win_proba_one_champ_draft(BJgl,RTop,RJgl,RMid,RAdc,RSup, Matrix, PJgl),
-    win_proba_one_champ_draft(BMid,RTop,RJgl,RMid,RAdc,RSup, Matrix, PMid),
-    win_proba_one_champ_draft(BAdc,RTop,RJgl,RMid,RAdc,RSup, Matrix, PAdc),
-    win_proba_one_champ_draft(BSup,RTop,RJgl,RMid,RAdc,RSup, Matrix, PSup),
-    P is PTop*(1/5)+PJgl*(1/5)+PMid*(1/5)+PAdc*(1/5)+PSup*(1/5).
+    win_proba_one_champ_draft(BTop,RTop,RJgl,RMid,RAdc,RSup, Matrix, PBTop),
+    win_proba_one_champ_draft(BJgl,RTop,RJgl,RMid,RAdc,RSup, Matrix, PBJgl),
+    win_proba_one_champ_draft(BMid,RTop,RJgl,RMid,RAdc,RSup, Matrix, PBMid),
+    win_proba_one_champ_draft(BAdc,RTop,RJgl,RMid,RAdc,RSup, Matrix, PBAdc),
+    win_proba_one_champ_draft(BSup,RTop,RJgl,RMid,RAdc,RSup, Matrix, PBSup),
+    win_proba_one_champ_draft(RTop,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRTop),
+    win_proba_one_champ_draft(RJgl,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRJgl),
+    win_proba_one_champ_draft(RMid,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRMid),
+    win_proba_one_champ_draft(RAdc,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRAdc),
+    win_proba_one_champ_draft(RSup,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRSup),
+    P is e**(-((PRTop*(1/5)+PRJgl*(1/5)+PRMid*(1/5)+PRAdc*(1/5)+PRSup*(1/5))-(PBTop*(1/5)+PBJgl*(1/5)+PBMid*(1/5)+PBAdc*(1/5)+PBSup*(1/5)))).
+    %logistic funtcion to normalize proba
