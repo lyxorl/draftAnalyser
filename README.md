@@ -20,7 +20,7 @@ process_file('LstLegend.txt').
 initialiser(Matrix)
 ```
 ## Add victory and update data matrix
-The first 5 champ are 1 team and the five last the other team :
+The first 5 champ are the winnig team and the five last are for the loser team :
 ```
 add_victory('Ornn','Maokai','Tristana','Varus','Nautilus','Jayce','Vi','Aurora','Ezreal','Rell').
 
