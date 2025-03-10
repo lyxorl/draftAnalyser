@@ -62,6 +62,8 @@ add_victory('Jax','Skarner','Azir','Ezreal','Alistar','Kennen','Vi','Aurora','Mi
 
 load_matrix('matrix.txt',Matrix),win_proba_draft('Gragas','Nocturne','Orianna','Kalista','Renata Glasc','Aatrox','Nidalee','Akali','Varus','Poppy',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
-P = 0.5.
+P = 0.5.\
+
+add_victory('Aatrox','Nidalee','Akali','Varus','Poppy','Gragas','Nocturne','Orianna','Kalista','Renata Glasc').
 
 = Result and conclusion
