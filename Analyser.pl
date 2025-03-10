@@ -178,5 +178,5 @@ win_proba_draft(BTop,BJgl,BMid,BAdc,BSup,RTop,RJgl,RMid,RAdc,RSup,Matrix, P):- %
     win_proba_one_champ_draft(RMid,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRMid),
     win_proba_one_champ_draft(RAdc,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRAdc),
     win_proba_one_champ_draft(RSup,BTop,BJgl,BMid,BAdc,BSup, Matrix, PRSup),
-    P is e**(-((PRTop*(1/5)+PRJgl*(1/5)+PRMid*(1/5)+PRAdc*(1/5)+PRSup*(1/5))-(PBTop*(1/5)+PBJgl*(1/5)+PBMid*(1/5)+PBAdc*(1/5)+PBSup*(1/5)))).
-    %logistic funtcion to normalize proba
+    Plogisticfun is e**(-((PRTop*(1/5)+PRJgl*(1/5)+PRMid*(1/5)+PRAdc*(1/5)+PRSup*(1/5))-(PBTop*(1/5)+PBJgl*(1/5)+PBMid*(1/5)+PBAdc*(1/5)+PBSup*(1/5)))),
+    P is 1/(1+Plogisticfun).

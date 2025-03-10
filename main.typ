@@ -40,10 +40,15 @@ $ S_t = sum_(k=1)^(5) S_k $
 
 with $t in {R,B}$
 
+Now lets use the logistic function to have the probabilty of winnig of one side :
+
+$ PP_R = 1/(1+e^(-(S_R-S_B))) $
+
 
 = Historical of draft and command in Prolog
 
 initialiser(Matrix).
 add_victory('Ornn','Maokai','Tristana','Varus','Nautilus','Jayce','Vi','Aurora','Ezreal','Rell').
+add_victory('Camille','Sejuani','Azir','Miss Fortune','Leona','Ambessa','Skarner','Aurelion Sol','Ashe','Pantheon').
 
 = Result and conclusion
