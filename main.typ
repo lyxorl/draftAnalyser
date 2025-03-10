@@ -55,6 +55,9 @@ add_victory('K\'Sante','Nocturne','Taliyah','Lucian','Nami','Gnar','Xin Zhao','A
 first test :\
 load_matrix('matrix.txt',Matrix),win_proba_draft('Jax','Skarner','Azir','Ezreal','Alistar','Kennen','Vi','Aurora','Miss Fortune','Leona',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
-P = 0.47834688488309984.
+P = 0.47834688488309984.\
+wrong result
+
+add_victory('Jax','Skarner','Azir','Ezreal','Alistar','Kennen','Vi','Aurora','Miss Fortune','Leona').
 
 = Result and conclusion
