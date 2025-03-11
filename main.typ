@@ -58,7 +58,7 @@ initialiser(Matrix).
     row-gutter: 5pt,
     align: horizon,
     fill: (x, y) =>
-    if (y >= 1 and x >= 1) { if (x < 5){
+    if (y >= 1 and x >= 1) { if (x <= 5){
         blue
     } else { red } }
     else { if (x == 0 and y > 0){green} else {white} },
@@ -124,5 +124,6 @@ load_matrix('matrix.txt',Matrix),win_proba_draft('Jayce','Brand','Yone','Varus',
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
 P = 0.5133301737382324.
 
+add_victory('Sion','Sejuani','Taliyah','Miss Fortune','Rell','Jayce','Brand','Yone','Varus','Nautilus').
 
 = Result and conclusion
