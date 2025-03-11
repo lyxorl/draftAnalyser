@@ -85,7 +85,7 @@ initialiser(Matrix).
     [_Game 3_\
     *TL Victory*],
     [K'Sante],[Nocturne],[Taliyah],[Lucian],[Nami],
-    [Gnar],[Xin Xhao],[Ahri],[Zeri],[Yuumi]
+    [Gnar],[Xin Zhao],[Ahri],[Zeri],[Yuumi]
     )
 ]
 )
@@ -113,7 +113,7 @@ P = 0.5.\
 
 add_victory('Aatrox','Nidalee','Akali','Varus','Poppy','Gragas','Nocturne','Orianna','Kalista','Renata Glasc').
 
-KC-CFO
+== KC -C FO
 load_matrix('matrix.txt',Matrix),win_proba_draft('Ambessa','Vi','Aurora','Kai\'Sa','Rakan','Rumble','Skarner','Viktor','Ezreal','Leona',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
 P = 0.4419298941260467.
@@ -125,5 +125,12 @@ Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 
 P = 0.5133301737382324.
 
 add_victory('Sion','Sejuani','Taliyah','Miss Fortune','Rell','Jayce','Brand','Yone','Varus','Nautilus').
+
+== TES - TL
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('Rumble','Vi','Aurora','Ashe','Braum','Galio','Xin Zhao','Tristana','Ezreal','Rakan',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.46892897678537176.
+add_victory('Rumble','Vi','Aurora','Ashe','Braum','Galio','Xin Zhao','Tristana','Ezreal','Rakan').
 
 = Result and conclusion
