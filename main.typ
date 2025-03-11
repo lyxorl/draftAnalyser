@@ -1,5 +1,5 @@
 #set heading(numbering: "1.")
-#align(center, text(20pt)[*Draft Analyser*])
+#align(center, text(20pt)[*Draft Analyzer*])
 
 = Modeling
 == Defining Items and Objects
@@ -48,10 +48,55 @@ $ PP_R = 1/(1+e^(-(S_R-S_B))) $
 = Historical of draft and command in Prolog
 
 initialiser(Matrix).
-KC - TL
+
+== KC - TL :
+
+#align(center, [
+#grid(
+    columns: 11,
+    column-gutter: 5pt,
+    row-gutter: 5pt,
+    align: horizon,
+    fill: (x, y) =>
+    if (y >= 1 and x >= 1) { if (x < 5){
+        blue
+    } else { red } }
+    else { if (x == 0 and y > 0){green} else {white} },
+    grid.cell(
+    colspan: 5,
+    [#align(center, [*Victory*])]
+    ),
+    grid.cell(
+    colspan: 5,
+    [#align(center, [*Defeat*])]
+    ),
+    [],
+
+    [_Game 1_\
+    *TL Victory*],
+    [Ornn],[Maokai],[Tristana],[Varus],[Nautilus],
+    [Jayce],[Vi],[Aurora],[Ezreal],[Rell],
+
+    [_Game 2_\
+    *KC Victory*],
+    [Camille],[Sejuani],[Azir],[Miss Fortune],[Leona],
+    [Ambessa],[Skarner],[Aurelion Sol],[Ashe],[Pantheon],
+
+    [_Game 3_\
+    *TL Victory*],
+    [K'Sante],[Nocturne],[Taliyah],[Lucian],[Nami],
+    [Gnar],[Xin Xhao],[Ahri],[Zeri],[Yuumi]
+    )
+]
+)
+
+```Python
 add_victory('Ornn','Maokai','Tristana','Varus','Nautilus','Jayce','Vi','Aurora','Ezreal','Rell').
 add_victory('Camille','Sejuani','Azir','Miss Fortune','Leona','Ambessa','Skarner','Aurelion Sol','Ashe','Pantheon').
-add_victory('K\'Sante','Nocturne','Taliyah','Lucian','Nami','Gnar','Xin Zhao','Ahri','Zeri','Yuumi').\
+add_victory('K\'Sante','Nocturne','Taliyah','Lucian','Nami','Gnar','Xin Zhao','Ahri','Zeri','Yuumi').
+```
+
+== TES - HLE
 
 TES-HLE
 first test :\
@@ -72,5 +117,12 @@ KC-CFO
 load_matrix('matrix.txt',Matrix),win_proba_draft('Ambessa','Vi','Aurora','Kai\'Sa','Rakan','Rumble','Skarner','Viktor','Ezreal','Leona',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
 P = 0.4419298941260467.
+
+add_victory('Rumble','Skarner','Viktor','Ezreal','Leona','Ambessa','Vi','Aurora','Kai\'Sa','Rakan').
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('Jayce','Brand','Yone','Varus','Nautilus','Sion','Sejuani','Taliyah','Miss Fortune','Rell',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.5133301737382324.
+
 
 = Result and conclusion
