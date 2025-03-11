@@ -1,9 +1,8 @@
-# Draft Analyser
+# Draft Analyzer
 
-This project as goal to analyse League of Legends draft, and will bve use for the event First Stand 2024.
-How to use it :
-
-[There is a PDF which explain probability model here](main.pdf)
+This project aims to analyze League of Legends drafts and will be used for the event **First Stand 2024**.
+Here’s how to use it:
+[You can find a PDF explaining the probability model here.](main.pdf)
 
 ---
 ## Load Data
@@ -11,23 +10,23 @@ How to use it :
 ```
 consult('Analyser.pl').
 ```
-- Load champion file :
+- Load the champion file :
 ```
 process_file('LstLegend.txt').
 ```
-- Initialise matrix (fill the file matrix.txt with 0 (total reset)).
+- Initialize matrix (this will fill the file `matrix.txt` with 0 for total reset).
 ```
 initialiser(Matrix)
 ```
-## Add victory and update data matrix
-The first 5 champ are the winnig team and the five last are for the loser team :
+## Add Victory and Update Data Matrix
+The first 5 champions represent the winning team, and the last 5 represent the losing team:
 ```
 add_victory('Ornn','Maokai','Tristana','Varus','Nautilus','Jayce','Vi','Aurora','Ezreal','Rell').
 
 ```
 
 ## Check win probability
-The first 5 champ are 1 team and the five last the other team too :
+The first 5 champions represent one team, and the last 5 represent the other team. This will calculate the probability of the first team winning:
 ```
 load_matrix('matrix.txt',Matrix),
 win_proba_draft('K\'Sante','Nocturne','Taliyah','Lucian','Nami','Gnar','Xin Zhao','Ahri','Zeri','Yuumi',Matrix,P).
