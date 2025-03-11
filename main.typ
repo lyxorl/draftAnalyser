@@ -46,8 +46,9 @@ $ PP_R = 1/(1+e^(-(S_R-S_B))) $
 
 
 = Historical of draft and command in Prolog
-
+```
 initialiser(Matrix).
+```
 
 == KC - TL :
 
@@ -130,7 +131,12 @@ add_victory('Sion','Sejuani','Taliyah','Miss Fortune','Rell','Jayce','Brand','Yo
 
 load_matrix('matrix.txt',Matrix),win_proba_draft('Rumble','Vi','Aurora','Ashe','Braum','Galio','Xin Zhao','Tristana','Ezreal','Rakan',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
-P = 0.46892897678537176.
+P = 0.46892897678537176.\
 add_victory('Rumble','Vi','Aurora','Ashe','Braum','Galio','Xin Zhao','Tristana','Ezreal','Rakan').
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('K\'Sante','Maokai','Hwei','Kalista','Nautilus','Aatrox','Pantheon','Sylas','Varus','Neeko',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.49222284950490025.\
+add_victory('Aatrox','Pantheon','Sylas','Varus','Neeko','K\'Sante','Maokai','Hwei','Kalista','Nautilus').
 
 = Result and conclusion
