@@ -91,6 +91,7 @@ initialiser(Matrix).
 ]
 )
 
+Add victory in matrix of the match :
 ```Python
 add_victory('Ornn','Maokai','Tristana','Varus','Nautilus','Jayce','Vi','Aurora','Ezreal','Rell').
 add_victory('Camille','Sejuani','Azir','Miss Fortune','Leona','Ambessa','Skarner','Aurelion Sol','Ashe','Pantheon').
@@ -99,22 +100,57 @@ add_victory('K\'Sante','Nocturne','Taliyah','Lucian','Nami','Gnar','Xin Zhao','A
 
 == TES - HLE
 
+=== Calcul of winnig proba of the draft
 TES-HLE
-first test :\
 load_matrix('matrix.txt',Matrix),win_proba_draft('Jax','Skarner','Azir','Ezreal','Alistar','Kennen','Vi','Aurora','Miss Fortune','Leona',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
 P = 0.47834688488309984.\
 wrong result
 
-add_victory('Jax','Skarner','Azir','Ezreal','Alistar','Kennen','Vi','Aurora','Miss Fortune','Leona').
-
 load_matrix('matrix.txt',Matrix),win_proba_draft('Gragas','Nocturne','Orianna','Kalista','Renata Glasc','Aatrox','Nidalee','Akali','Varus','Poppy',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
 P = 0.5.\
 
-add_victory('Aatrox','Nidalee','Akali','Varus','Poppy','Gragas','Nocturne','Orianna','Kalista','Renata Glasc').
+=== Draft TES - HLE with victory
+#align(center, [
+#grid(
+    columns: 11,
+    column-gutter: 5pt,
+    row-gutter: 5pt,
+    align: horizon,
+    fill: (x, y) =>
+    if (y >= 1 and x >= 1) { if (x <= 5){
+        blue
+    } else { red } }
+    else { if (x == 0 and y > 0){green} else {white} },
+    grid.cell(
+    colspan: 5,
+    [#align(center, [*Victory*])]
+    ),
+    grid.cell(
+    colspan: 5,
+    [#align(center, [*Defeat*])]
+    ),
+    [],
 
+    [_Game 1_\
+    *HLE Victory*],
+    [Jax],[Skarner],[Azir],[Ezreal],[Alistar],
+    [Kennen],[Vi],[Aurora],[Miss Fortune],[Leona],
+
+    [_Game 2_\
+    *HLE Victory*],
+    [Aatrox],[Nidalee],[Akali],[Varus],[Poppy],
+    [Gragas],[Nocturne],[Orianna],[Kalista],[Renata Glasc],
+    )
+]
+)
+```python
+add_victory('Jax','Skarner','Azir','Ezreal','Alistar','Kennen','Vi','Aurora','Miss Fortune','Leona').
+add_victory('Aatrox','Nidalee','Akali','Varus','Poppy','Gragas','Nocturne','Orianna','Kalista','Renata Glasc').
+```
 == KC - CFO
+
 load_matrix('matrix.txt',Matrix),win_proba_draft('Ambessa','Vi','Aurora','Kai\'Sa','Rakan','Rumble','Skarner','Viktor','Ezreal','Leona',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
 P = 0.4419298941260467.
