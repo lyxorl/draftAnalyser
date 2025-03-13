@@ -203,4 +203,12 @@ P = 0.5036110483266414.
 
 add_victory('Aatrox','Ivern','Yone','Ezreal','Leona','Gnar','Karthus','Corki','Varus','Rell').
 
+== CFO - TL
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('K\'Sante','Xin Zhao','Azir','Ezreal','Alistar','Gwen','Vi','Taliyah','Kai\'Sa','Rakan',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.4830620392311757.
+
+
+g
 = Result and conclusion
