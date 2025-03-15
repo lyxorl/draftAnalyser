@@ -100,18 +100,8 @@ add_victory('K\'Sante','Nocturne','Taliyah','Lucian','Nami','Gnar','Xin Zhao','A
 
 == TES - HLE
 
-=== Calcul of winnig proba of the draft
-TES-HLE
-load_matrix('matrix.txt',Matrix),win_proba_draft('Jax','Skarner','Azir','Ezreal','Alistar','Kennen','Vi','Aurora','Miss Fortune','Leona',Matrix,P).
-Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
-P = 0.47834688488309984.\
-wrong result
+=== Draft :
 
-load_matrix('matrix.txt',Matrix),win_proba_draft('Gragas','Nocturne','Orianna','Kalista','Renata Glasc','Aatrox','Nidalee','Akali','Varus','Poppy',Matrix,P).
-Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
-P = 0.5.\
-
-=== Draft TES - HLE with victory
 #align(center, [
 #grid(
     columns: 11,
@@ -145,23 +135,94 @@ P = 0.5.\
     )
 ]
 )
+
+=== Calcul of winning proba of the drafts
+
+TES-HLE Game 1 :
+```Python
+load_matrix('matrix.txt',Matrix),win_proba_draft('Jax','Skarner','Azir','Ezreal','Alistar','Kennen','Vi','Aurora','Miss Fortune','Leona',Matrix,P).
+-> Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+-> P = 0.47834688488309984.
+```
+This model give probability of 0.47 at the first five champ entered in data.\
+In the final result the 5 first champ win this game
+We can say the model guess wrong the issue of the match.
+
+TES - HLE Game 2 :
+```python
+load_matrix('matrix.txt',Matrix),win_proba_draft('Gragas','Nocturne','Orianna','Kalista','Renata Glasc','Aatrox','Nidalee','Akali','Varus','Poppy',Matrix,P).
+-> Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+-> P = 0.5.
+```
+This model give probability of 0.5 at the first five champ entered in data.\
+In the final result the 5 first champ win this game.
+
+=== Add Victory in Matrix
+
 ```python
 add_victory('Jax','Skarner','Azir','Ezreal','Alistar','Kennen','Vi','Aurora','Miss Fortune','Leona').
 add_victory('Aatrox','Nidalee','Akali','Varus','Poppy','Gragas','Nocturne','Orianna','Kalista','Renata Glasc').
 ```
 == KC - CFO
 
-load_matrix('matrix.txt',Matrix),win_proba_draft('Ambessa','Vi','Aurora','Kai\'Sa','Rakan','Rumble','Skarner','Viktor','Ezreal','Leona',Matrix,P).
-Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
-P = 0.4419298941260467.
+=== Draft
 
-add_victory('Rumble','Skarner','Viktor','Ezreal','Leona','Ambessa','Vi','Aurora','Kai\'Sa','Rakan').
+#align(center, [
+#grid(
+    columns: 11,
+    column-gutter: 5pt,
+    row-gutter: 5pt,
+    align: horizon,
+    fill: (x, y) =>
+    if (y >= 1 and x >= 1) { if (x <= 5){
+        blue
+    } else { red } }
+    else { if (x == 0 and y > 0){green} else {white} },
+    grid.cell(
+    colspan: 5,
+    [#align(center, [*Victory*])]
+    ),
+    grid.cell(
+    colspan: 5,
+    [#align(center, [*Defeat*])]
+    ),
+    [],
+
+    [_Game 1_\
+    *CFO Victory*],
+    [Rumble],[Skarner],[Viktor],[Ezreal],[Leona],
+    [Ambessa],[Vi],[Aurora],[Kai\'Sa],[Rakan],
+
+    [_Game 2_\
+    *CFO Victory*],
+    [Sion],[Sejuani],[Taliyah],[Miss Fortune],[Rell],
+    [Jayce],[Brand],[Yone],[Varus],[Nautilus],
+    )
+]
+)
+
+=== Calculus of the winning probability of the drafts
+
+KC - CFO Game 1 :
+```python
+load_matrix('matrix.txt',Matrix),win_proba_draft('Ambessa','Vi','Aurora','Kai\'Sa','Rakan','Rumble','Skarner','Viktor','Ezreal','Leona',Matrix,P).
+-> Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+-> P = 0.4419298941260467.
+```
+This model give probability of 0.44 at the first five champ entered in data.\
+In the final result the 5 last champ win this game.
+We can say the model give a good reponse because he give a proba of 56% to win at the last five champ.
+
 
 load_matrix('matrix.txt',Matrix),win_proba_draft('Jayce','Brand','Yone','Varus','Nautilus','Sion','Sejuani','Taliyah','Miss Fortune','Rell',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
 P = 0.5133301737382324.
 
+=== Add victory in matrix
+```python
+add_victory('Rumble','Skarner','Viktor','Ezreal','Leona','Ambessa','Vi','Aurora','Kai\'Sa','Rakan').
 add_victory('Sion','Sejuani','Taliyah','Miss Fortune','Rell','Jayce','Brand','Yone','Varus','Nautilus').
+```
 
 == TES - TL
 
