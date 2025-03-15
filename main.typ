@@ -175,7 +175,7 @@ Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 
 P = 0.49222284950490025.\
 add_victory('Aatrox','Pantheon','Sylas','Varus','Neeko','K\'Sante','Maokai','Hwei','Kalista','Nautilus').
 
-== HLE - CBO
+== HLE - CFO
 
 load_matrix('matrix.txt',Matrix),win_proba_draft('Rumble','Vi','Yone','Ashe','Rakan','Karma','Wukong','Azir','Ezreal','Alistar',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
@@ -209,6 +209,47 @@ load_matrix('matrix.txt',Matrix),win_proba_draft('K\'Sante','Xin Zhao','Azir','E
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
 P = 0.4830620392311757.
 
+add_victory('K\'Sante','Xin Zhao','Azir','Ezreal','Alistar','Gwen','Vi','Taliyah','Kai\'Sa','Rakan').
 
-g
+load_matrix('matrix.txt',Matrix),win_proba_draft('Jax','Sejuani','Corki','Ziggs','Poppy','Gangplank','Maokai','Yone','Tristana','Leona',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.5122197884189273.
+
+add_victory('Gangplank','Maokai','Yone','Tristana','Leona','Jax','Sejuani','Corki','Ziggs','Poppy').
+
+== KC - HLE
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('Rumble','Xin Zhao','Taliyah','Ezreal','Leona','Aurora','Vi','Sylas','Varus','Poppy',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.5647338377718968.
+
+add_victory('Aurora','Vi','Sylas','Varus','Poppy','Rumble','Xin Zhao','Taliyah','Ezreal','Leona').
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('Ambessa','Ivern','Azir','Jhin','Alistar','Gnar','Maokai','Corki','Ashe','Renata Glasc',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.5271953567276605.
+
+add_victory('Ambessa','Ivern','Azir','Jhin','Alistar','Gnar','Maokai','Corki','Ashe','Renata Glasc').
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('Vladimir','Wukong','Jayce','Kai\'Sa','Rell','Sion','Sejuani','Ryze','Draven','Rakan',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.4628463872345206.
+
+add_victory('Vladimir','Wukong','Jayce','Kai\'Sa','Rell','Sion','Sejuani','Ryze','Draven','Rakan').
+
+== CFO - TES
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('Jayce','Sejuani','Taliyah','Ezreal','Alistar','K\'Sante','Nidalee','Yone','Jhin','Leona',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.4652676676122881.
+
+add_victory('Jayce','Sejuani','Taliyah','Ezreal','Alistar','K\'Sante','Nidalee','Yone','Jhin','Leona').
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('Rumble','Xin Zhao','Sylas','Corki','Poppy','Sion','Skarner','Azir','Caitlyn','Nautilus',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.5049998333399998.
+
+add_victory('Sion','Skarner','Azir','Caitlyn','Nautilus','Rumble','Xin Zhao','Sylas','Corki','Poppy').
+
+
 = Result and conclusion

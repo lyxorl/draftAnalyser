@@ -33,6 +33,13 @@ increment_matrix(Matrix, I, J, NewMatrix) :-
     replace_in_list(J, NewValue, Row, NewRow),
     replace_in_list(I, NewRow, Matrix, NewMatrix).
 
+decrement_matrix(Matrix, I, J, NewMatrix) :-
+    nth1(I, Matrix, Row),
+    nth1(J, Row, Value),
+    NewValue is Value - 1,
+    replace_in_list(J, NewValue, Row, NewRow),
+    replace_in_list(I, NewRow, Matrix, NewMatrix).
+
 replace_in_list(Index, Value, List, NewList) :-
     nth1(Index, List, _, Temp),
     nth1(Index, NewList, Value, Temp).
@@ -118,6 +125,27 @@ add_victory(WTop,WMid,WJgl,WAdc,WSup,LTop,LMid,LJgl,LAdc,LSup) :-
     add_victory_one_champ_for_five(Matrix2,WMid,LTop,LJgl,LMid,LAdc,LSup,Matrix3),
     add_victory_one_champ_for_five(Matrix3,WAdc,LTop,LJgl,LMid,LAdc,LSup,Matrix4),
     add_victory_one_champ_for_five(Matrix4,WSup,LTop,LJgl,LMid,LAdc,LSup,FinalMatrix),
+    save_matrix('matrix.txt',FinalMatrix).
+
+remove_victory_one_champ(Matrix, WChamp, LChamp, NewMatrix) :-
+    champion_id(WChamp,WchampID),
+    champion_id(LChamp,LChampID),
+    decrement_matrix(Matrix,WchampID,LChampID,NewMatrix).
+
+remove_victory_one_champ_for_five(Matrix, WChamp, LChamp1, LChamp2, LChamp3, LChamp4, LChamp5, NewMatrix) :-
+    remove_victory_one_champ(Matrix ,WChamp,LChamp1,Matrix1),
+    remove_victory_one_champ(Matrix1,WChamp,LChamp2,Matrix2),
+    remove_victory_one_champ(Matrix2,WChamp,LChamp3,Matrix3),
+    remove_victory_one_champ(Matrix3,WChamp,LChamp4,Matrix4),
+    remove_victory_one_champ(Matrix4,WChamp,LChamp5,NewMatrix).
+
+remove_victory(WTop,WMid,WJgl,WAdc,WSup,LTop,LMid,LJgl,LAdc,LSup) :-
+    load_matrix('matrix.txt',Matrix),
+    remove_victory_one_champ_for_five(Matrix ,WTop,LTop,LJgl,LMid,LAdc,LSup,Matrix1),
+    remove_victory_one_champ_for_five(Matrix1,WJgl,LTop,LJgl,LMid,LAdc,LSup,Matrix2),
+    remove_victory_one_champ_for_five(Matrix2,WMid,LTop,LJgl,LMid,LAdc,LSup,Matrix3),
+    remove_victory_one_champ_for_five(Matrix3,WAdc,LTop,LJgl,LMid,LAdc,LSup,Matrix4),
+    remove_victory_one_champ_for_five(Matrix4,WSup,LTop,LJgl,LMid,LAdc,LSup,FinalMatrix),
     save_matrix('matrix.txt',FinalMatrix).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
