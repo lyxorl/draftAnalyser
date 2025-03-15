@@ -251,5 +251,24 @@ P = 0.5049998333399998.
 
 add_victory('Sion','Skarner','Azir','Caitlyn','Nautilus','Rumble','Xin Zhao','Sylas','Corki','Poppy').
 
+== HLE - TL
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('K\'Sante','Pantheon','Ziggs','Kalista','Renata Glasc','Kayle','Vi','Ryze','Draven','Pyke',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.5020833212770899.
+
+add_victory('Kayle','Vi','Ryze','Draven','Pyke','K\'Sante','Pantheon','Ziggs','Kalista','Renata Glasc').
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('Renekton','Maokai','Cassiopeia','Varus','Rakan','Quinn','Zyra','Tristana','Jhin','Rell',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.48611468225399523.
+
+add_victory('Renekton','Maokai','Cassiopeia','Varus','Rakan','Quinn','Zyra','Tristana','Jhin','Rell').
+
+load_matrix('matrix.txt',Matrix),win_proba_draft('Ambessa','Skarner','Kassadin','Sivir','Braum','Jax','Ivern','Viktor','Ezreal','Leona',Matrix,P).
+Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+P = 0.4775151752081999.
+
+add_victory('Ambessa','Skarner','Kassadin','Sivir','Braum','Jax','Ivern','Viktor','Ezreal','Leona').
 
 = Result and conclusion
