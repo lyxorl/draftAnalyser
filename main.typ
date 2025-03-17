@@ -213,10 +213,13 @@ This model give probability of 0.44 at the first five champ entered in data.\
 In the final result the 5 last champ win this game.
 We can say the model give a good reponse because he give a proba of 56% to win at the last five champ.
 
-
+KC -CFO Game 2 :
+```python
 load_matrix('matrix.txt',Matrix),win_proba_draft('Jayce','Brand','Yone','Varus','Nautilus','Sion','Sejuani','Taliyah','Miss Fortune','Rell',Matrix,P).
-Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
-P = 0.5133301737382324.
+->Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+->P = 0.5133301737382324.
+```
+This time the model don't give a good prediction.
 
 === Add victory in matrix
 ```python
@@ -226,15 +229,65 @@ add_victory('Sion','Sejuani','Taliyah','Miss Fortune','Rell','Jayce','Brand','Yo
 
 == TES - TL
 
-load_matrix('matrix.txt',Matrix),win_proba_draft('Rumble','Vi','Aurora','Ashe','Braum','Galio','Xin Zhao','Tristana','Ezreal','Rakan',Matrix,P).
-Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
-P = 0.46892897678537176.\
-add_victory('Rumble','Vi','Aurora','Ashe','Braum','Galio','Xin Zhao','Tristana','Ezreal','Rakan').
+=== Draft
 
+#align(center, [
+#grid(
+    columns: 11,
+    column-gutter: 5pt,
+    row-gutter: 5pt,
+    align: horizon,
+    fill: (x, y) =>
+    if (y >= 1 and x >= 1) { if (x <= 5){
+        blue
+    } else { red } }
+    else { if (x == 0 and y > 0){green} else {white} },
+    grid.cell(
+    colspan: 5,
+    [#align(center, [*Victory*])]
+    ),
+    grid.cell(
+    colspan: 5,
+    [#align(center, [*Defeat*])]
+    ),
+    [],
+
+    [_Game 1_\
+    *TES Victory*],
+    [Rumble],[Vi],[Aurora],[Ashe],[Braum],
+    [Galio],[Xin Zhao],[Tristana],[Ezreal],[Rakan],
+
+    [_Game 2_\
+    *TES Victory*],
+    [Aatrox],[Pantheon],[Sylas],[Varus],[Neeko],
+    [K'Sante],[Maokai],[Hwei],[Kalista],[Nautilus],
+    )
+]
+)
+
+=== Calculus of the winning probability of the drafts
+
+TES - TL Game 1 :
+```python
+load_matrix('matrix.txt',Matrix),win_proba_draft('Rumble','Vi','Aurora','Ashe','Braum','Galio','Xin Zhao','Tristana','Ezreal','Rakan',Matrix,P).
+-> Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
+-> P = 0.46892897678537176.\
+```
+The model don't give a good prediction here.
+
+TES - TL Game 2 :
+```python
 load_matrix('matrix.txt',Matrix),win_proba_draft('K\'Sante','Maokai','Hwei','Kalista','Nautilus','Aatrox','Pantheon','Sylas','Varus','Neeko',Matrix,P).
 Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0|...], [0, 0, 0, 0|...], [0, 0, 0|...], [0, 0|...], [0|...], [...|...]|...],
-P = 0.49222284950490025.\
+P = 0.49222284950490025.
+```
+Here the model give a good prediction.
+
+=== Add victory in matrix
+```python
+add_victory('Rumble','Vi','Aurora','Ashe','Braum','Galio','Xin Zhao','Tristana','Ezreal','Rakan').
 add_victory('Aatrox','Pantheon','Sylas','Varus','Neeko','K\'Sante','Maokai','Hwei','Kalista','Nautilus').
+```
 
 == HLE - CFO
 
@@ -331,5 +384,11 @@ Matrix = [[0, 0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 0, 0, 0|...], [0, 0, 0, 0, 
 P = 0.4775151752081999.
 
 add_victory('Ambessa','Skarner','Kassadin','Sivir','Braum','Jax','Ivern','Viktor','Ezreal','Leona').
+
+= Semi Final 1 : KC - CFO
+
+= Semi Final 2 : HLE - TES
+
+= FINAL : HLE - KC
 
 = Result and conclusion
