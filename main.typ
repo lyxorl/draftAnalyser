@@ -475,4 +475,6 @@ good result
 
 add_victory('Camille','Vi','Ahri','Xayah','Gragas','Kennen','Pantheon','Galio','Draven','Renata Glasc').
 
+
+
 = Result and conclusion
